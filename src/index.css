@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-main: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root {
+  --color-sapphire-bg: #030712;
+  --color-sapphire-card: rgba(2, 6, 23, 0.75);
+  --color-sapphire-border: rgba(129, 140, 248, 0.15);
+  --color-sapphire-accent: #818cf8;
+  --color-sapphire-text: #ffffff;
+  --color-sapphire-dim: #475569;
+  --color-sapphire-mine: #7f1d1d;
+  
+  --color-board-center: #0a0f1c;
+  --color-board-edge: #000000;
+  --color-cell-hidden: rgba(15, 23, 42, 0.9);
+}
+
+/* Performance Mode Overrides */
+.perf-low {
+  --color-sapphire-card: rgba(5, 10, 30, 0.98);
+  --color-cell-hidden: rgb(20, 30, 50);
+
+  /* Disable expensive backdrop blurs */
+  .backdrop-blur-xl, .backdrop-blur-2xl, .backdrop-blur-md, .backdrop-blur-sm, .backdrop-blur {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Simplify complex shadows to high-performance single-layer ones */
+  [class*="shadow-"], [class*="shadow-["], 
+  button, div, span {
+    box-shadow: none !important;
+  }
+  
+  .perf-base-shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Remove filter-based glows and drop-shadows */
+  [class*="drop-shadow-"], [class*="drop-shadow-["],
+  .drop-shadow-sm, .drop-shadow-md, .drop-shadow-lg,
+  svg, span {
+    filter: none !important;
+  }
+
+  /* Disable secondary translucent layers and gradients that add overhead */
+  .ambient-light,
+  .win-shimmer,
+  .cell-sheen {
+    display: none !important;
+  }
+}
